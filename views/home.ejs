@@ -1,0 +1,51 @@
+<!--- To fix this app:
+Need to figure out why the trash can not deleting things anymore. Why is it cutting off users response?-->
+
+<!doctype html>
+<html>
+<head>
+    <title>Pets App Home</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    
+    <div class="page-header text-center">
+        <h1>Pets!</h1>
+        <div>
+          <a href="/profile" class="btn btn-default btn-sm">Profile</a>
+          <a href="/logout" class="btn btn-default btn-sm">Logout</a> 
+      </div>
+      <h2>Share a Photo:</h2>
+      <% if (user.local.email) { %>
+        <form action="/posts" method="POST" enctype="multipart/form-data">
+          <input type="text" value="<%= user.local.email %>" name="email" readonly>
+          <input type="file" name="image" accept="image/*">
+          <input type="text" placeholder="Type caption here.." name="caption">
+          <button type="submit">Post!</button>
+        </form>
+      </div>
+      <% } %>       
+   
+    <h3>Community Feed:</h3>
+    <h4>Highest ranked appear at top of feed</h4>
+    <ul class="posts">
+      <% for (var i = 0; i < posts.length; i++) { %>
+        <li class="container post" data-id="<%= posts[i]._id %>">
+          <span><%= posts[i].email %></span>
+          <img src="<%= posts[i].image %>" alt="Image of pet" height: auto;">
+          <span><%= posts[i].caption %></span>
+          <span><%= posts[i].thumbUp %></span>
+          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </li>
+      <% } %>
+    </ul>
+  
+    
+<script src="/main.js"></script>
+
+</body>
+</html>
+
